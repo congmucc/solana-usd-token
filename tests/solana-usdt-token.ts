@@ -48,7 +48,7 @@ describe('Usdt Tokens', () => {
 
   it.only('Mint tokens!', async () => {
     // Amount of tokens to mint.
-    const amount = new anchor.BN(1_000_000_000);
+    const amount = new anchor.BN(100_000_000_000);
 
     // Mint the tokens to the associated token account.
     const transactionSignature = await program.methods
