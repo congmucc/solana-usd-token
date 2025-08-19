@@ -115,6 +115,21 @@ The program is configured for devnet deployment. To change networks, update the 
 ```toml
 [provider]
 cluster = "devnet"  # or "localnet", "mainnet-beta"
+
+# if localnet
+[test]
+startup_wait = 5000
+shutdown_wait = 2000
+upgradeable = false
+
+[test.validator]
+bind_address = "0.0.0.0"
+url = "https://api.mainnet-beta.solana.com"
+ledger = ".anchor/test-ledger"
+rpc_port = 8899
+
+[[test.validator.clone]]
+address = "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
 ```
 
 ## Testing
@@ -179,19 +194,3 @@ Signature: 3QUcsmcAooPrYdD5Em9mJVSwtDvDQs4vDhywqb4YvKKguBna67WHb3g7jEYmW5JXtj577
 
 Deploy success
 ```
-
-## License
-
-This project is licensed under the MIT License.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Submit a pull request
-
-## Support
-
-For issues and questions, please open an issue on the GitHub repository.
