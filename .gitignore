@@ -1,7 +1,19 @@
 .anchor
 .DS_Store
-target
 **/*.rs.bk
 node_modules
 test-ledger
 .yarn
+
+# 忽略 target 下的所有内容
+/target/*
+
+# 但是不要忽略 target 下的 idl、types 和 deploy
+!/target/idl/
+!/target/types/
+!/target/deploy/
+
+# 如果这些文件夹里面的文件也要提交，确保递归不被忽略
+!/target/idl/**
+!/target/types/**
+!/target/deploy/**
