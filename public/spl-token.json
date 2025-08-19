@@ -1,0 +1,6 @@
+{
+    "name": "Solana Usdt",
+    "symbol": "USDT",
+    "description": "A Usdt Solana SPL token :)",
+    "image": "https://raw.githubusercontent.com/congmucc/solana-usd-token/main/public/usdt.png"
+}
