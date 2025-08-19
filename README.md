@@ -15,6 +15,19 @@ A Solana program for creating and managing USD-pegged tokens (USDT and USDC) usi
 ```
 nyr3tiGvwr9pWZ8Aj7vuDWsrom6CoxAshr3MSqFZojr
 ```
+> Program_Id
+
+```
+39n7pLeC6hj3NGSxuL6gkHKsthnwabz4AiqeTXxEpteg
+```
+> USDT
+
+ 
+```
+6qQsLebiBiPbE99rNm5V8Ej7AuHL93iXtqz8s7JjHcMS
+```
+> USDC
+
 
 ## Prerequisites
 
