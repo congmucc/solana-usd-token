@@ -5,7 +5,7 @@ use anchor_lang::prelude::*;
 pub mod instructions;
 
 use instructions::*;
-declare_id!("9Xyk3G6kk35K1BnjVZr3NP7Lk844MYgNgn4nYVQBauNL");
+declare_id!("nyr3tiGvwr9pWZ8Aj7vuDWsrom6CoxAshr3MSqFZojr");
 
 #[program]
 pub mod solana_usd_token {
