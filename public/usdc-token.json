@@ -1,0 +1,6 @@
+{
+    "name": "USDC",
+    "symbol": "USDC",
+    "description": "A Usdc Solana SPL token :)",
+    "image": "https://raw.githubusercontent.com/congmucc/solana-usd-token/main/public/usdc.png"
+}
