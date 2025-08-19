@@ -3,7 +3,7 @@ import { getAssociatedTokenAddressSync } from '@solana/spl-token';
 import { SolanaUsdToken } from "../target/types/solana_usd_token";
 import { Keypair } from '@solana/web3.js';
 
-describe('Transfer Tokens', () => {
+describe('Usdt Tokens', () => {
   const provider = anchor.AnchorProvider.env();
   anchor.setProvider(provider);
   const payer = provider.wallet as anchor.Wallet;
@@ -16,29 +16,33 @@ describe('Transfer Tokens', () => {
   };
 
   // Generate new keypair to use as address for mint account.
-  const mintKeypair = new Keypair();
+  const [mintAccount, mintBump] = anchor.web3.PublicKey.findProgramAddressSync(
+    [Buffer.from('usd-token'), payer.publicKey.toBytes(), Buffer.from(metadata.symbol)],
+    program.programId,
+  )
 
+
+  console.log('mintAccount :>> ', mintAccount.toString());
   // Generate new keypair to use as address for recipient wallet.
   const recipient = new Keypair();
 
   // Derive the associated token address account for the mint and payer.
-  const senderTokenAddress = getAssociatedTokenAddressSync(mintKeypair.publicKey, payer.publicKey);
+  const senderTokenAddress = getAssociatedTokenAddressSync(mintAccount, payer.publicKey);
 
   // Derive the associated token address account for the mint and recipient.
-  const recepientTokenAddress = getAssociatedTokenAddressSync(mintKeypair.publicKey, recipient.publicKey);
+  const recepientTokenAddress = getAssociatedTokenAddressSync(mintAccount, recipient.publicKey);
 
   it('Create an SPL Token!', async () => {
     const transactionSignature = await program.methods
-      .createToken(metadata.name, metadata.symbol, metadata.uri)
+      .createToken(metadata.symbol, metadata.name, metadata.uri)
       .accounts({
         payer: payer.publicKey,
-        mintAccount: mintKeypair.publicKey,
+        mintAccount: mintAccount,
       })
-      .signers([mintKeypair])
       .rpc();
 
     console.log('Success!');
-    console.log(`   Mint Address: ${mintKeypair.publicKey}`);
+    console.log(`   Mint Address: ${mintAccount}`);
     console.log(`   Transaction Signature: ${transactionSignature}`);
   });
 
@@ -52,7 +56,7 @@ describe('Transfer Tokens', () => {
       .accounts({
         mintAuthority: payer.publicKey,
         recipient: payer.publicKey,
-        mintAccount: mintKeypair.publicKey,
+        mintAccount: mintAccount,
         associatedTokenAccount: senderTokenAddress,
       })
       .rpc();
@@ -71,7 +75,7 @@ describe('Transfer Tokens', () => {
       .accounts({
         sender: payer.publicKey,
         recipient: recipient.publicKey,
-        mintAccount: mintKeypair.publicKey,
+        mintAccount: mintAccount,
         senderTokenAccount: senderTokenAddress,
         recipientTokenAccount: recepientTokenAddress,
       })

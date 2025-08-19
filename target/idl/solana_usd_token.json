@@ -28,7 +28,32 @@
         {
           "name": "mint_account",
           "writable": true,
-          "signer": true
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  100,
+                  45,
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "payer"
+              },
+              {
+                "kind": "arg",
+                "path": "token_symbol"
+              }
+            ]
+          }
         },
         {
           "name": "metadata_account",
@@ -82,11 +107,11 @@
       ],
       "args": [
         {
-          "name": "token_title",
+          "name": "token_symbol",
           "type": "string"
         },
         {
-          "name": "token_symbol",
+          "name": "token_name",
           "type": "string"
         },
         {

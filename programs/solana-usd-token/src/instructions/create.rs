@@ -10,17 +10,19 @@ use {
 };
 
 #[derive(Accounts)]
+#[instruction(token_symbol: String)]
 pub struct CreateToken<'info> {
     #[account(mut)]
     pub payer: Signer<'info>,
 
     #[account(
-        init,
+        init_if_needed,
         payer = payer,
-        mint::decimals = 9,
+        mint::decimals = 6,
         mint::authority = payer.key(),
         mint::freeze_authority = payer.key(),
-
+        seeds = [b"usd-token", payer.key().as_ref(), token_symbol.as_bytes()],
+        bump,
     )]
     pub mint_account: Account<'info, Mint>,
 
@@ -41,8 +43,8 @@ pub struct CreateToken<'info> {
 
 pub fn create_token(
     ctx: Context<CreateToken>,
-    token_name: String,
     token_symbol: String,
+    token_name: String,
     token_uri: String,
 ) -> Result<()> {
     msg!("Creating metadata account");

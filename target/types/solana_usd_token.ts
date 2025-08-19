@@ -34,7 +34,32 @@ export type SolanaUsdToken = {
         {
           "name": "mintAccount",
           "writable": true,
-          "signer": true
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  100,
+                  45,
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "payer"
+              },
+              {
+                "kind": "arg",
+                "path": "tokenSymbol"
+              }
+            ]
+          }
         },
         {
           "name": "metadataAccount",
@@ -88,11 +113,11 @@ export type SolanaUsdToken = {
       ],
       "args": [
         {
-          "name": "tokenTitle",
+          "name": "tokenSymbol",
           "type": "string"
         },
         {
-          "name": "tokenSymbol",
+          "name": "tokenName",
           "type": "string"
         },
         {
