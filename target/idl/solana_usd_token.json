@@ -1,5 +1,5 @@
 {
-  "address": "9Xyk3G6kk35K1BnjVZr3NP7Lk844MYgNgn4nYVQBauNL",
+  "address": "nyr3tiGvwr9pWZ8Aj7vuDWsrom6CoxAshr3MSqFZojr",
   "metadata": {
     "name": "solana_usd_token",
     "version": "0.1.0",
@@ -107,11 +107,11 @@
       ],
       "args": [
         {
-          "name": "token_symbol",
+          "name": "token_name",
           "type": "string"
         },
         {
-          "name": "token_name",
+          "name": "token_symbol",
           "type": "string"
         },
         {

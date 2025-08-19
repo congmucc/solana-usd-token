@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/solana_usd_token.json`.
  */
 export type SolanaUsdToken = {
-  "address": "9Xyk3G6kk35K1BnjVZr3NP7Lk844MYgNgn4nYVQBauNL",
+  "address": "nyr3tiGvwr9pWZ8Aj7vuDWsrom6CoxAshr3MSqFZojr",
   "metadata": {
     "name": "solanaUsdToken",
     "version": "0.1.0",
@@ -113,11 +113,11 @@ export type SolanaUsdToken = {
       ],
       "args": [
         {
-          "name": "tokenSymbol",
+          "name": "tokenName",
           "type": "string"
         },
         {
-          "name": "tokenName",
+          "name": "tokenSymbol",
           "type": "string"
         },
         {

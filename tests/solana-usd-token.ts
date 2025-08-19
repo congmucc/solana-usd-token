@@ -10,10 +10,11 @@ describe('Usdt Tokens', () => {
   const program = anchor.workspace.SolanaUsdToken as anchor.Program<SolanaUsdToken>;
 
   const metadata = {
-    name: 'Solana Usdt',
+    name: 'USDT',
     symbol: 'USDT',
-    uri: 'https://raw.githubusercontent.com/congmucc/solana-usd-token/main/public/spl-token.json',
+    uri: 'https://raw.githubusercontent.com/congmucc/solana-usd-token/main/public/usdt-token.json',
   };
+  // https://raw.githubusercontent.com/congmucc/solana-usd-token/main/public/usdt-token.json
 
   // Generate new keypair to use as address for mint account.
   const [mintAccount, mintBump] = anchor.web3.PublicKey.findProgramAddressSync(
@@ -37,7 +38,6 @@ describe('Usdt Tokens', () => {
       .createToken(metadata.symbol, metadata.name, metadata.uri)
       .accounts({
         payer: payer.publicKey,
-        mintAccount: mintAccount,
       })
       .rpc();
 
@@ -46,9 +46,9 @@ describe('Usdt Tokens', () => {
     console.log(`   Transaction Signature: ${transactionSignature}`);
   });
 
-  it('Mint tokens!', async () => {
+  it.only('Mint tokens!', async () => {
     // Amount of tokens to mint.
-    const amount = new anchor.BN(100);
+    const amount = new anchor.BN(1_000_000_000);
 
     // Mint the tokens to the associated token account.
     const transactionSignature = await program.methods

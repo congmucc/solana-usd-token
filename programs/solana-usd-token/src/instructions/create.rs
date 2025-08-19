@@ -16,7 +16,7 @@ pub struct CreateToken<'info> {
     pub payer: Signer<'info>,
 
     #[account(
-        init_if_needed,
+        init,
         payer = payer,
         mint::decimals = 6,
         mint::authority = payer.key(),
